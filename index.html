@@ -79,6 +79,18 @@
       // To disable auto-reconnection (optional):
       // window.wsReconnectDisabled = false; // Set to true to disable
     </script>
-    <script src="map.js"></script>
+    <!-- Automatic cache-busting: Uses timestamp to ensure fresh loads every time -->
+    <script>
+      // Load map.js with automatic cache-busting timestamp
+      (function () {
+        var script = document.createElement("script");
+        script.src = "map.js?v=" + new Date().getTime();
+        script.type = "text/javascript";
+        // Force synchronous loading for proper initialization order
+        script.defer = false;
+        script.async = false;
+        document.head.appendChild(script);
+      })();
+    </script>
   </body>
 </html>
